@@ -7,8 +7,8 @@
 	<packaging>jar</packaging>
 
 	<parent>
-		<groupId>CSULA_ACM</groupId>
-		<artifactId>Social-Media</artifactId>
+		<groupId>LA-County-Regional-Planning</groupId>
+		<artifactId>CUP-Account-Interface</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
