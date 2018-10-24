@@ -10,17 +10,13 @@ import lombok.Data;
 public class BalanceByContact {
 	
 	public String transGlobalName, accountNumber,
-	typeName, accountName, description;
-	
-	public int globalEntityId, caTransactionId;
-	
-	public String transactionType;
+	typeName, accountName, description, globalEntityId, caTransactionId, transactionType;
 	
 	public Date transactionDate;
 	
 	public String receiptNumber;
 	
-	public double paymentAmount1;
+	public int paymentAmount1;
 	
 	public String receivedBy;
 	
@@ -28,6 +24,6 @@ public class BalanceByContact {
 	
 	public String paymentMethod;
 	
-	public double paymentAmount2, deposit, withdrawal, balance;
+	public int paymentAmount2, deposit, withdrawal, balance;
 	
 }

@@ -73,19 +73,19 @@ public class BalanceByContactExtractor {
 			String typeName = rs.getString("TYPENAME");
 			String accountName = rs.getString("ACCOUNT_NAME");
 			String description = rs.getString("DESCRIPTION");
-			int globalEntityId = rs.getInt("GlobalEntityID");
-			int caTransactionId = rs.getInt("CATRANSACTIONID");
-			String transactionType = rs.getString("Transaction Type");
+			String globalEntityId = rs.getString("GlobalEntityID");
+			String caTransactionId = rs.getString("CATRANSACTIONID");
+			String transactionType = rs.getString("TransactionType");
 			Date transactionDate = rs.getDate("TRANSACTIONDATE");
 			String receiptNumber = rs.getString("RECEIPTNUMBER");
-			double paymentAmount1 = rs.getDouble("PAYMENTAMOUNT");
+			int paymentAmount1 = rs.getInt("PAYMENTAMOUNT");
 			String receivedBy = rs.getString("RECEIVEDBY");
 			Date paymentDate = rs.getDate("PaymentDate");
 			String paymentMethod = rs.getString("PaymentMethod");
-			double paymentAmount2 = rs.getDouble("PAYMENTAMOUNT");
-			double deposit = rs.getDouble("DEPOSIT");
-			double withdrawal = rs.getDouble("WITHDRAWAL");
-			double balance = rs.getDouble("BALANCE");
+			int paymentAmount2 = rs.getInt("PAYMENTAMOUNT");
+			int deposit = rs.getInt("DEPOSIT");
+			int withdrawal = rs.getInt("WITHDRAWAL");
+			int balance = rs.getInt("BALANCE");
 
 			return new BalanceByContact(transGlobalName, accountNumber, typeName, accountName, description,
 					globalEntityId, caTransactionId, transactionType, transactionDate, receiptNumber, paymentAmount1,
