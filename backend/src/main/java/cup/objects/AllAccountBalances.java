@@ -11,6 +11,7 @@ public class AllAccountBalances {
 					supDist, companyName, 
 					firstName, lastName,
 					acctName, acctDesc,
-					balance, accountType;
+					 accountType;
+	public double balance;
 
 }
