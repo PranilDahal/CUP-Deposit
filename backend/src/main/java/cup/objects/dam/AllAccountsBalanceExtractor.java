@@ -22,7 +22,7 @@ import cup.objects.NonMatchingAccounts;
 @Component
 public class AllAccountBalancesExtractor {
 
-    private static final String GET_ALLACCOUNTS_BALANCE = "SELECT distinct P.PLANNUMBER, CSM.ServiceArea, D.NAME as SUP_DIST,\n" +
+    private static final String GET_ALLACCOUNT_BALANCES = "SELECT distinct P.PLANNUMBER, CSM.ServiceArea, D.NAME as SUP_DIST,\n" +
             "ge.GLOBALENTITYNAME as CompanyName, ge.FIRSTNAME, ge.LASTNAME, GlobalEntityAccount.Name as ACCT_NAME, \n" +
             "GlobalEntityAccount.Description as ACCT_DESC, GlobalEntityAccount.Balance, \n" +
             "GlobalEntityAccountType.TypeName AS [Account Type] \n" +
@@ -80,7 +80,7 @@ public class AllAccountBalancesExtractor {
 
     public List<AllAccountBalances> getAllAccountsBalance() {
 
-        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNTS_BALANCE, new Mapper());
+        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNT_BALANCES, new Mapper());
         return accts;
 
     }
