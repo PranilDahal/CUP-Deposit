@@ -68,7 +68,7 @@ public class AllAccountBalancesExtractor {
 
             String acctDesc = rs.getString("ACCT_DESC");
 
-            Float balance = rs.getFloat("Balance");
+            double balance = rs.getDouble("Balance");
 
             String accountType = rs.getString("[Account Type]");
 
