@@ -21,7 +21,7 @@ public class NonMatchingAccountsApi {
 	 * @return GET - http://localhost:8080/nonmatching/all | Returns ALL NonMatchingAccounts objects
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public List<NonMatchingAccounts> getAllSsu() {
+	public List<NonMatchingAccounts> getAllNonMatchingAccounts() {
 		return DAM.getAllNonmatchingAccounts() ;
 	}
 	

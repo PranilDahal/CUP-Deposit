@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 import cup.objects.NonMatchingAccounts;
 
 @Component
-public class AllAccountsBalanceExtractor {
+public class AllAccountBalancesExtractor {
 
     private static final String GET_ALLACCOUNTS_BALANCE = "SELECT distinct P.PLANNUMBER, CSM.ServiceArea, D.NAME as SUP_DIST,\n" +
             "ge.GLOBALENTITYNAME as CompanyName, ge.FIRSTNAME, ge.LASTNAME, GlobalEntityAccount.Name as ACCT_NAME, \n" +
@@ -46,41 +46,41 @@ public class AllAccountsBalanceExtractor {
 
     }
 
-    private static class Mapper implements RowMapper<AllAccountsBalance> {
+    private static class Mapper implements RowMapper<AllAccountBalances> {
 
 
         @Override
-        public AllAccountsBalance mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public AllAccountBalances mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-            String plannumber = rs.getString("PLANNUMBER");
+            String planNumber = rs.getString("PLANNUMBER");
 
-            String servicearea = rs.getString("ServiceArea");
+            String serviceArea = rs.getString("ServiceArea");
 
-            String sup_dist = rs.getString("SUP_DIST");
+            String supDist = rs.getString("SUP_DIST");
 
-            String companyname = rs.getString("CompanyName");
+            String companyName = rs.getString("CompanyName");
 
-            String firstname  = rs.getString("FIRSTNAME");
+            String firstName  = rs.getString("FIRSTNAME");
 
-            String lastname  = rs.getString("LASTNAME");
+            String lastName  = rs.getString("LASTNAME");
 
-            String accountname = rs.getString("ACCT_NAME");
+            String acctName = rs.getString("ACCT_NAME");
 
-            String description = rs.getString("ACCT_DESC");
+            String acctDesc = rs.getString("ACCT_DESC");
 
             Float balance = rs.getFloat("Balance");
 
-            String accounttype = rs.getString("[Account Type]");
+            String accountType = rs.getString("[Account Type]");
 
-            return new AllAccountsBalance(plannumber, servicearea, sup_dist, companyname, firstname, lastname, accountname, description, balance, accounttype);
+            return new AllAccountBalances(planNumber, serviceArea, supDist, companyName, firstName, lastName, acctName, acctDesc, balance, accountType);
 
         }
 
     }
 
-    public List<AllAccountsBalance> getAllAccountsBalance() {
+    public List<AllAccountBalances> getAllAccountsBalance() {
 
-        List <AllAccountsBalance> accts = this.jdbcTemplate.query(GET_ALLACCOUNTS_BALANCE, new Mapper());
+        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNTS_BALANCE, new Mapper());
         return accts;
 
     }
