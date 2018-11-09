@@ -21,5 +21,7 @@ public class NonMatchingAccounts {
 	public String firstname;
 	
 	public String lastname;
+	
+	public String email;
 
 }
