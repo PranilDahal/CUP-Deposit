@@ -23,7 +23,7 @@ import cup.objects.NonMatchingAccounts;
 public class NonMatchingAccountsExtractor {
 
 	private static final String GET_NONMATCHING_ACCOUNTS = "select P.PLANNUMBER, A.NAME, T.TYPENAME, U.FNAME +' ' + U.LNAME as LASTCHANGEDBY, A.LASTCHANGEDON, G.GLOBALENTITYNAME as COMPANYNAME,\r\n" + 
-			"G.FIRSTNAME, G.LASTNAME\r\n" + 
+			"G.FIRSTNAME, G.LASTNAME, U.EMAIL\r\n" + 
 			"From GLOBALENTITYACCOUNT A\r\n" + 
 			"left outer join PLPLAN P on P.PLANNUMBER = A.NAME  \r\n" + 
 			"inner join GLOBALENTITYACCOUNTTYPE T on A.GLOBALENTITYACCOUNTTYPEID = T.GLOBALENTITYACCOUNTTYPEID\r\n" + 
@@ -60,8 +60,11 @@ public class NonMatchingAccountsExtractor {
 			String firstname = rs.getString("FIRSTNAME");
 			
 			String lastname  = rs.getString("LASTNAME");
+			
+			String email = rs.getString("EMAIL");
 
-			return new NonMatchingAccounts(name, typename, lastchangedby, lastchangedon, companyname, firstname, lastname);
+			return new NonMatchingAccounts(name, typename, lastchangedby,
+					lastchangedon, companyname, firstname, lastname, email);
 
 		}
 
