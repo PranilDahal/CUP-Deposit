@@ -17,12 +17,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import cup.objects.BalanceByContact;
 import cup.objects.BalanceByPlan;
 
 @Component
 public class BalanceByPlanExtractor {
-	private static final "SELECT CT.GLOBALENTITYNAME as TRANS_GLOBAL_NAME, P.PLANNUMBER,\r\n" + 
+	private static final String GET_BALANCES_BY_PLAN = "SELECT CT.GLOBALENTITYNAME as TRANS_GLOBAL_NAME, P.PLANNUMBER,\r\n" + 
 			"		PC.LANDMANAGEMENTCONTACTTYPEID, P.ASSIGNEDTO, \r\n" + 
 			"  	   GEA.ACCOUNTNUMBER, GEAT.TYPENAME ,GEA.NAME AS ACCOUNT_NAME, GEA.DESCRIPTION,\r\n" + 
 			"      CT.GlobalEntityID, CT.CATRANSACTIONID,   CTT.Name AS TransactionType, CT.TRANSACTIONDATE,\r\n" + 
