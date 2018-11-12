@@ -22,28 +22,28 @@ import cup.objects.BalanceByPlan;
 @Component
 public class BalanceByPlanExtractor {
 	private static final String GET_BALANCES_BY_PLAN = "SELECT CT.GLOBALENTITYNAME as TRANS_GLOBAL_NAME, P.PLANNUMBER,\r\n" + 
-			"		PC.LANDMANAGEMENTCONTACTTYPEID, P.ASSIGNEDTO, \r\n" + 
+			"		PC.PLPLANCONTACTID, P.ASSIGNEDTO, \r\n" + 
 			"  	   GEA.ACCOUNTNUMBER, GEAT.TYPENAME ,GEA.NAME AS ACCOUNT_NAME, GEA.DESCRIPTION,\r\n" + 
 			"      CT.GlobalEntityID, CT.CATRANSACTIONID,   CTT.Name AS TransactionType, CT.TRANSACTIONDATE,\r\n" + 
 			"	   CT.RECEIPTNUMBER,-- CATransaction.Note,\r\n" + 
 			"	   CTP.PAYMENTAMOUNT, \r\n" + 
 			"	   U.FNAME + ' ' + U.LNAME as RECEIVEDBY, \r\n" + 
-			"       CTP.PaymentDate, CPM.Name AS PaymentMethod,\r\n" + 
+			"       CTP.PaymentDate, CPM.Name AS PaymentMethod, CTP.SupplementalData, CTP.PAYMENTNOTE,\r\n" + 
 			"	   CTP.PAYMENTAMOUNT, D.DEPOSIT, W.WITHDRAWAL, GEA.BALANCE\r\n" + 
 			"	  \r\n" + 
-			"FROM [EnerGov_Test].[dbo].[GLOBALENTITYACCOUNT] GEA\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[GLOBALENTITYACCOUNTENTITY] GEAE ON GEA.GLOBALENTITYACCOUNTID = GEAE.GLOBALENTITYACCOUNTID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[GLOBALENTITY] GE ON GEAE.GLOBALENTITYID = GE.GLOBALENTITYID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[PLPLANCONTACT] PC ON GE.GLOBALENTITYID = PC.GLOBALENTITYID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[PLPLAN] P ON PC.PLPLANID = P.PLPLANID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[GLOBALENTITYACCOUNTTYPE] GEAT ON GEA.GLOBALENTITYACCOUNTTYPEID = GEAT.GLOBALENTITYACCOUNTTYPEID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CATRANSACTIONACCOUNT] CTA ON GEA.GLOBALENTITYACCOUNTID = CTA.ENTITYACCOUNTID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CATRANSACTION] CT ON CTA.CATRANSACTIONID = CT.CATRANSACTIONID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CATRANSACTIONTYPE] CTT ON CTT.CATRANSACTIONTYPEID = CT.CATRANSACTIONTYPEID \r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CATRANSACTIONSTATUS] CTS ON CT.CATRANSACTIONSTATUSID = CTS.CATRANSACTIONSTATUSID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CATRANSACTIONPAYMENT] CTP ON CT.CATRANSACTIONID = CTP.CATRANSACTIONID\r\n" + 
-			"INNER JOIN [EnerGov_Test].[dbo].[CAPAYMENTMETHOD] CPM ON CTP.CAPAYMENTMETHODID = CPM.CAPAYMENTMETHODID\r\n" + 
-			"LEFT OUTER JOIN [EnerGov_Test].[dbo].[USERS] U ON U.SUSERGUID = CTP.LASTCHANGEDBY\r\n" + 
+			"FROM GLOBALENTITYACCOUNT GEA\r\n" + 
+			"INNER JOIN GLOBALENTITYACCOUNTENTITY GEAE ON GEA.GLOBALENTITYACCOUNTID = GEAE.GLOBALENTITYACCOUNTID\r\n" + 
+			"INNER JOIN GLOBALENTITY GE ON GEAE.GLOBALENTITYID = GE.GLOBALENTITYID\r\n" + 
+			"INNER JOIN PLPLANCONTACT PC ON GE.GLOBALENTITYID = PC.GLOBALENTITYID\r\n" + 
+			"INNER JOIN PLPLAN P ON PC.PLPLANID = P.PLPLANID\r\n" + 
+			"INNER JOIN GLOBALENTITYACCOUNTTYPE GEAT ON GEA.GLOBALENTITYACCOUNTTYPEID = GEAT.GLOBALENTITYACCOUNTTYPEID\r\n" + 
+			"INNER JOIN CATRANSACTIONACCOUNT CTA ON GEA.GLOBALENTITYACCOUNTID = CTA.ENTITYACCOUNTID\r\n" + 
+			"INNER JOIN CATRANSACTION CT ON CTA.CATRANSACTIONID = CT.CATRANSACTIONID\r\n" + 
+			"INNER JOIN CATRANSACTIONTYPE CTT ON CTT.CATRANSACTIONTYPEID = CT.CATRANSACTIONTYPEID \r\n" + 
+			"INNER JOIN CATRANSACTIONSTATUS CTS ON CT.CATRANSACTIONSTATUSID = CTS.CATRANSACTIONSTATUSID\r\n" + 
+			"INNER JOIN CATRANSACTIONPAYMENT CTP ON CT.CATRANSACTIONID = CTP.CATRANSACTIONID\r\n" + 
+			"INNER JOIN CAPAYMENTMETHOD CPM ON CTP.CAPAYMENTMETHODID = CPM.CAPAYMENTMETHODID\r\n" + 
+			"LEFT OUTER JOIN USERS U ON U.SUSERGUID = CTP.LASTCHANGEDBY\r\n" + 
 			"\r\n" + 
 			"Full Join (SELECT  SUM(P.PAYMENTAMOUNT) as [DEPOSIT], GE.accountnumber\r\n" + 
 			"			FROM catransactionpayment P\r\n" + 
@@ -62,13 +62,9 @@ public class BalanceByPlanExtractor {
 			"			left outer join globalentityaccount GE on A.entityaccountid = ge.globalentityaccountid\r\n" + 
 			"		where  CT.NAME = 'ACCOUNT WITHDRAWAL'\r\n" + 
 			"		group by GE.ACCOUNTNUMBER) W on GEA.ACCOUNTNUMBER = W.ACCOUNTNUMBER\r\n" + 
-			"				\r\n" + 
-			"\r\n" + 
-			"/*add transaction-note legacy payer*/\r\n" + 
 			"\r\n" + 
 			"where TYPENAME = 'Condition Check'\r\n" + 
-			"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE\r\n" + 
-			"--WHERE  GLOBALENTITYACCOUNT.NAME = 'RCUP-200900023'"
+			"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE";
 			
 private JdbcTemplate jdbcTemplate;
 
@@ -102,7 +98,7 @@ private JdbcTemplate jdbcTemplate;
 					int withdrawal = rs.getInt("WITHDRAWAL");
 					int balance = rs.getInt("BALANCE");
 
-					return new BalanceByContact(transGlobalName, planNumber, plPlanContactId, accountNumber, typeName, accountName, description,
+					return new BalanceByPlan(transGlobalName, planNumber, plPlanContactId, accountNumber, typeName, accountName, description,
 							globalEntityId, caTransactionId, transactionType, transactionDate, receiptNumber, paymentAmount1,
 							receivedBy, paymentDate, paymentMethod, paymentAmount2, deposit, withdrawal, balance);
 
