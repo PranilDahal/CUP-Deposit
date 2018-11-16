@@ -85,7 +85,7 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy Vue.js frontend content</id>
+						<id>copy frontend content</id>
 						<phase>generate-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
