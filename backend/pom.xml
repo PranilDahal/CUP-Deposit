@@ -95,11 +95,11 @@
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>../frontend/</directory>
-									<includes>
+									<directory>../frontend/dist/Frontend</directory>
+									<!-- <includes>
 										<include>static/</include>
 										<include>index.html</include>
-									</includes>
+									</includes> -->
 								</resource>
 							</resources>
 						</configuration>

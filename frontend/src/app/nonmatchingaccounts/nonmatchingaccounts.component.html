@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<h2>Flagged Accounts</h2>
+
+<ul>
+  <li *ngFor="let x of nonmatchingaccounts; let i=index;">
+    {{x.companyname}}
+    {{x.email}}
+    {{x.lastchangedby}}
+    {{x.lastchangedon}}
+    {{x.name}}
+  </li>
+</ul>
