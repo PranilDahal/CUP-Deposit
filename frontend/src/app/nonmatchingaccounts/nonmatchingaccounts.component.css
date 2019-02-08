@@ -1,0 +1,21 @@
+#nonmatchingaccounts_table {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #nonmatchingaccounts_tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  #flagged_accounts_title{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
