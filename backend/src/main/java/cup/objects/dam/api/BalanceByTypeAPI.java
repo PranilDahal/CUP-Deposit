@@ -3,6 +3,7 @@ package cup.objects.dam.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,7 @@ import cup.objects.dam.BalanceByContactExtractor;
 import cup.objects.dam.BalanceByPlanExtractor;
 
 @RestController
-@RequestMapping("/balances")
+@RequestMapping("api/v1/balances")
 public class BalanceByTypeAPI {
 	
 	@Autowired
@@ -24,6 +25,7 @@ public class BalanceByTypeAPI {
 	/**
 	 * @return GET - http://localhost:8080/balances/contact | Returns individual balances by contact objects
 	 */
+	@CrossOrigin
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public List<BalanceByContact> getBBC() {
 		return contactDAM.getBalancesByContact() ;
@@ -32,6 +34,7 @@ public class BalanceByTypeAPI {
 	/**
 	 * @return GET - http://localhost:8080/balances/plan | Returns individual balances by plan objects
 	 */
+	@CrossOrigin
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
 	public List<BalanceByPlan> getBBP() {
 		return planDAM.getBalancesByPlan();

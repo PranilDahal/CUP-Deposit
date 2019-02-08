@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<h2 id="flagged_accounts_title">Flagged Accounts</h2>
+
+<table id="nonmatchingaccounts_table">
+  <tr id="nonmatchingaccounts_tr">
+    <th>Name</th>
+    <th>Company</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Last Changed On</th>
+    <th>Last Changed By</th>
+    <th>Type Name</th>
+    <th>Email</th>
+  </tr>
+  <tr *ngFor="let x of nonmatchingaccounts; let i=index;" id="nonmatchingaccounts_tr">
+    <td >{{x.name}}</td>
+    <td>{{x.companyname}}</td>
+    <td>{{x.firstname}}</td>
+    <td>{{x.lastname}}</td>
+    <td>{{x.lastchangedon}}</td>
+    <td>{{x.lastchangedby}}</td>
+    <td>{{x.typename}}</td>
+    <td>{{x.email}} </td>
+  </tr>
+</table>

@@ -1,0 +1,39 @@
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<div id="header_wrapper">
+
+  <img src="../../assets/img/regional_planning_logo.jpg" alt="LA County Department Of Regional Planning" 
+  width="100" height="100" id ="regional_planning_logo">
+  
+  <img src="../../assets/img/csula_logo.jpeg" alt="Cal State LA" 
+  width="100" height="100" id ="csula_logo">
+
+  <h2>Drawdown Interface</h2>
+
+  <ul id="main_menu">
+
+      <li id="menu_item"><a [routerLink]="['/all-account-balances']">
+        All Account Balances
+      </a></li>
+
+      <li id="menu_item"><a [routerLink]="['/balance-by-plan']">
+        Balance by Plan
+      </a></li>
+
+      <li id="menu_item"><a [routerLink]="['/balance-by-contact']">
+        Balance by Contact
+      </a></li>
+
+      <li id="menu_item"><a [routerLink]="['/nonmatching']">
+        Flagged Accounts (Nonmatching)
+      </a></li>
+
+      <li id="menu_item" style="float:right;font-weight: 600;color: darkorange;"><a [routerLink]="['']">
+        Home
+      </a></li>
+
+    </ul>
+
+</div>
