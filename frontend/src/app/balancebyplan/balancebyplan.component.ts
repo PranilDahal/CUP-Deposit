@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestapiService } from '../restapi.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-balancebyplan',
@@ -16,7 +18,7 @@ export class BalancebyplanComponent implements OnInit {
   
   getBalanceByPlan() {
     this.balancebyplan = [];
-    this.rest.getBalancesByPlan().subscribe((data: {}) => {
+    this.rest.getBalanceByPlan().subscribe((data: {}) => {
       console.log(data);
       this.balancebyplan = data;
     });
