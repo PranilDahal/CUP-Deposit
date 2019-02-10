@@ -1,4 +1,50 @@
 <app-header></app-header>
-<p>
-  balancebyplan works!
-</p>
+
+<h2 id="balance_by_plan_title">Balance by Plan</h2>
+
+<table id="balancebyplan_table">
+  <tr id="balancebyplan_tr">
+    <th>TRANS_GLOBAL_NAME</th>
+    <th>PLANNUMBER</th>
+    <th>PLPLANCONTACTID</th>
+    <th>ACCOUNT UMBER</th>
+    <th>TYPENAME</th>
+    <th>ACCOUNT_NAME</th>
+    <th>DESCRIPTION</th>
+    <th>GlobalEntityID</th>
+	<th>CATRANSACTIONID</th>
+	<th>TransactionType</th>
+	<th>TRANSACTIONDATE</th>
+	<th>RECEIPTNUMBER</th>
+	<th>PAYMENTAMOUNT</th>
+	<th>RECEIVEDBY</th>
+	<th>PaymentDate</th>
+	<th>PaymentMethod</th>
+	<th>PAYMENTAMOUNT</th>
+	<th>DEPOSIT</th>
+	<th>WITHDRAWAL</th>
+	<th>BALANCE</th>
+  </tr>
+  <tr *ngFor="let x of balancebyplan; let i=index;" id="balancebyplan_tr">
+    <td >{{x.transGlobalName}}</td>
+    <td>{{x.planNumber}}</td>
+    <td>{{x.plPlanContactId}}</td>
+    <td>{{x.accountNumber}}</td>
+    <td>{{x.typeName}}</td>
+    <td>{{x.accountName}}</td>
+    <td>{{x.description}}</td>
+    <td>{{x.globalEntityId}} </td>
+	<td>{{x.caTransactionId}} </td>
+	<td>{{x.transactionType}} </td>
+	<td>{{x.transactionDate}} </td>
+	<td>{{x.receiptNumber}} </td>
+	<td>{{x.paymentAmount1}} </td>
+	<td>{{x.receivedBy}} </td>
+	<td>{{x.paymentDate}} </td>
+	<td>{{x.paymentMethod}} </td>
+	<td>{{x.paymentAmount2}} </td>
+	<td>{{x.deposit}} </td>
+	<td>{{x.withdrawal}} </td>
+	<td>{{x.balance}} </td>
+  </tr>
+</table>
