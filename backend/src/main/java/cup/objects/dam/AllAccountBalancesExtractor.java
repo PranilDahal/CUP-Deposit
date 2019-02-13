@@ -31,8 +31,8 @@ public class AllAccountBalancesExtractor {
     		"left outer JOIN GlobalEntityAccountEntity ON GlobalEntityAccount.GlobalEntityAccountID = GlobalEntityAccountEntity.GlobalEntityAccountID \r\n" + 
     		"left outer join GLOBALENTITY GE on GLOBALENTITYACCOUNTENTITY.GLOBALENTITYID = GE.GLOBALENTITYID \r\n" + 
     		"inner join PLPLAN P on P.PLANNUMBER = GLOBALENTITYACCOUNT.NAME \r\n" + 
-    		"left outer join CUSTOMSAVERPLANMANAGEMENT CSM on P.PLPLANID = CSM.ID \r\n" + 
-    		"left outer join DISTRICT D on P.DISTRICTID = D.DISTRICTID\r\n" + 
+    		"left outer join [EnerGov_Prod].[dbo].CUSTOMSAVERPLANMANAGEMENT CSM on P.PLPLANID = CSM.ID \r\n" + 
+    		"left outer join [EnerGov_Prod].[dbo].[DISTRICT] D on P.DISTRICTID = D.DISTRICTID\r\n" + 
     		"WHERE GLOBALENTITYACCOUNTTYPE.DESCRIPTION like 'DRP%'\r\n" + 
     		"order by P.PLANNUMBER, GLOBALENTITYACCOUNT.NAME";
 
