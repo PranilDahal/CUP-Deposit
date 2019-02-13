@@ -9,11 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BalancebyplanComponent implements OnInit {
 
-   balancebyplan:any = [] ;
+  balancebyplan:any = [] ;
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
 
+  
   ngOnInit() {
-	  this.getBalanceByPlan();
+	this.getBalanceByPlan();
   }
   
   getBalanceByPlan() {
