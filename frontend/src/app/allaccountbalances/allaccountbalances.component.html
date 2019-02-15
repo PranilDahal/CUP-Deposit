@@ -1,9 +1,18 @@
 <!-- <app-header></app-header> -->
 <div class = "container">
     <app-header></app-header>
-<h2 class="align-items-center">All Account Balances</h2>
 
-    <form>
+    
+    <div class="row">
+    
+      <div class="col">
+      <h2 class="align-items-center">All Account Balances</h2>
+    </div>
+  
+    <div class = "col">
+  
+      <div class="float-right">
+      <form>
     <div class="form-row align-items-center">
       <div class="col-auto">
                 <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Search...">
@@ -13,6 +22,12 @@
         </div>
       </div>
     </form>
+</div>
+</div>
+    </div>
+    
+
+    <div style="overflow-x:auto">
 <table class="table table-striped">
   <thead>
     <th scope ="col">Plan Number</th>
@@ -41,4 +56,5 @@
   </tr>
   </tbody>
 </table>
+</div>
 </div>
