@@ -1,20 +1,22 @@
-<!-- <app-header></app-header> -->
-<div class = "container">
-    <app-header></app-header>
-<h2 class="align-items-center">All Account Balances</h2>
+<app-header></app-header>
+
+<h2 id="all_account_balances_title">All Account Balances</h2>
 
     <form>
-    <div class="form-row align-items-center">
-      <div class="col-auto">
-                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Search...">
+
+    <div>
+      <div>
+          <input type="text" placeholder="Search...">
       </div>
-      <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-2">Search</button>
+      <div>
+          <button type="submit">Search</button>
         </div>
       </div>
+
     </form>
-<table class="table table-striped">
-  <thead>
+
+<table id="all_account_balances_table">
+  <thead id="all_account_balances_tr">
     <th scope ="col">Plan Number</th>
     <th scope ="col">Service Area</th>
     <th scope ="col">SUP_DIST</th>
@@ -26,8 +28,9 @@
     <th scope ="col">Balance</th>
     <th scope ="col">Account Type</th>
   </thead>
+  
   <tbody>
-  <tr *ngFor="let x of allaccountbalances; let i=index;" id="all_account_balances__tr">
+  <tr *ngFor="let x of allaccountbalances; let i=index;" id="all_account_balances_tr">
     <td >{{x.planNumber}}</td>
     <td>{{x.serviceArea}}</td>
     <td>{{x.supDist}}</td>
@@ -40,5 +43,5 @@
     <td>{{x.accountType}} </td>
   </tr>
   </tbody>
+
 </table>
-</div>
