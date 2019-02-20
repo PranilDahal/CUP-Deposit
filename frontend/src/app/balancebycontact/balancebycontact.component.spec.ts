@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BalancebycontactComponent } from './balancebycontact.component';
+import { BalancebyplanComponent } from './balancebyplan.component';
 
-describe('BalancebycontactComponent', () => {
-  let component: BalancebycontactComponent;
-  let fixture: ComponentFixture<BalancebycontactComponent>;
+describe('BalancebyplanComponent', () => {
+  let component: BalancebyplanComponent;
+  let fixture: ComponentFixture<BalancebyplanComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BalancebycontactComponent ]
+      declarations: [ BalancebyplanComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BalancebycontactComponent);
+    fixture = TestBed.createComponent(BalancebyplanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
