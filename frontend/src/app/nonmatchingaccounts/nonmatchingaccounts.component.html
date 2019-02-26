@@ -1,10 +1,12 @@
 <app-header></app-header>
 
 <h2 id="flagged_accounts_title">Flagged Accounts</h2>
+     
+    <div class="col">
+      <a id="dlink"  style="display:none"></a>
 
-<a id="dlink"  style="display:none;"></a>
-
-<input type="button" class="btn btn-outline-info" onclick="tableToExcel('nonmatchingaccounts_table', 'Non Matching Table', 'nonMatchingTable.xls')" value="Export to Excel">
+      <input type="button" class="btn btn-outline-info" onclick="tableToExcel('nonmatchingaccounts_table', 'Non Matching Table', 'nonMatchingTable.xls')" value="Export to Excel">
+   
 
 <table  id="nonmatchingaccounts_table">
   <thead id="nonmatchingaccounts_tr">
@@ -32,16 +34,3 @@
   </tr>
   </tbody>
 </table>
-<!-- <script>
-   $(document).ready(function() {
-      
-  $('#nonmatchingaccounts_table').DataTable( {
-          
-          dom: 'Bfrtip',
-          buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-          ]
-      } );
-  } );
-
-</script> -->

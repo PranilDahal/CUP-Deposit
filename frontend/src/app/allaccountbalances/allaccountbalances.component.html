@@ -1,34 +1,39 @@
-<!-- <app-header></app-header> -->
-<div class = "container">
-    <app-header></app-header>
-
+<app-header></app-header>
+<!-- <div class = "container"> -->
+     
+    <h2 id="all_account_balances_title">All Account Balances</h2>
     
     <div class="row">
     
       <div class="col">
-      <h2 class="align-items-center">All Account Balances</h2>
+       
+        <a id="dlink"  style="display:none"></a>
+
+        <input type="button" class="btn btn-outline-info" onclick="tableToExcel('allAccountBalances_table', 'All Account Balances Table', 'allAccountBalances.xls')" value="Export to Excel">
+        
     </div>
   
     <div class = "col">
   
       <div class="float-right">
-      <form>
-    <div class="form-row align-items-center">
+        <form>
+        <div class="form-row align-items-center">
       <div class="col-auto">
                 <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Search...">
       </div>
-      <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-2">Search</button>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+          </div>
         </div>
+        </form>
+
       </div>
-    </form>
-</div>
-</div>
     </div>
+</div>
     
 
     <div style="overflow-x:auto">
-<table class="table table-striped">
+<table class="table table-striped" id="allAccountBalances_table">
   <thead>
     <th scope ="col">Plan Number</th>
     <th scope ="col">Service Area</th>
@@ -57,4 +62,4 @@
   </tbody>
 </table>
 </div>
-</div>
+<!-- </div> -->
