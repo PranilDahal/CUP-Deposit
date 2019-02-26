@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestapiService } from '../restapi.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-balancebyplan',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BalancebyplanComponent implements OnInit {
 
-  constructor() { }
+  balancebyplan:any = [] ;
+  constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
 
+  
   ngOnInit() {
+	this.getBalanceByPlan();
+  }
+  
+  getBalanceByPlan() {
+    this.balancebyplan = [];
+    this.rest.getBalanceByPlan().subscribe((data: {}) => {
+      console.log(data);
+      this.balancebyplan = data;
+    });
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestapiService } from '../restapi.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-balancebycontact',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BalancebycontactComponent implements OnInit {
 
-  constructor() { }
+  balancebycontact:any = [] ;
+  constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
 
+  
   ngOnInit() {
+	this.getBalanceByContact();
+  }
+  
+  getBalanceByContact() {
+    this.balancebycontact = [];
+    this.rest.getBalanceByContact().subscribe((data: {}) => {
+      console.log(data);
+      this.balancebycontact = data;
+    });
   }
 
 }

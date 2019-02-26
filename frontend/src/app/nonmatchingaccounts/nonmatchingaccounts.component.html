@@ -2,8 +2,13 @@
 
 <h2 id="flagged_accounts_title">Flagged Accounts</h2>
 
-<table id="nonmatchingaccounts_table">
-  <tr id="nonmatchingaccounts_tr">
+<a id="dlink"  style="display:none;"></a>
+
+<input type="button" class="btn btn-outline-info" onclick="tableToExcel('nonmatchingaccounts_table', 'Non Matching Table', 'nonMatchingTable.xls')" value="Export to Excel">
+
+<table  id="nonmatchingaccounts_table">
+  <thead id="nonmatchingaccounts_tr">
+  
     <th>Name</th>
     <th>Company</th>
     <th>First Name</th>
@@ -12,7 +17,9 @@
     <th>Last Changed By</th>
     <th>Type Name</th>
     <th>Email</th>
-  </tr>
+  
+</thead>
+<tbody>
   <tr *ngFor="let x of nonmatchingaccounts; let i=index;" id="nonmatchingaccounts_tr">
     <td >{{x.name}}</td>
     <td>{{x.companyname}}</td>
@@ -23,4 +30,18 @@
     <td>{{x.typename}}</td>
     <td>{{x.email}} </td>
   </tr>
+  </tbody>
 </table>
+<!-- <script>
+   $(document).ready(function() {
+      
+  $('#nonmatchingaccounts_table').DataTable( {
+          
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } );
+
+</script> -->
