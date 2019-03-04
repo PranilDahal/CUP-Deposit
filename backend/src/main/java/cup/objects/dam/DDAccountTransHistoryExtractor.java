@@ -39,8 +39,6 @@ public class DDAccountTransHistoryExtractor {
 		
 		@Override
 		public DDAccountTransHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-			String globalentityaccountid = rs.getString("GLOBALENTITYACCOUNTID");
 			
 			String accountnumber = rs.getString("ACCOUNTNUMBER");
 			
@@ -54,7 +52,7 @@ public class DDAccountTransHistoryExtractor {
 			
 			String receiptnumber = rs.getString("RECEIPTNUMBER");
 			
-			return new DDAccountTransHistory(globalentityaccountid, accountnumber, amount, status, type, paydate, receiptnumber);
+			return new DDAccountTransHistory( accountnumber, amount, status, type, paydate, receiptnumber);
 
 		}
 

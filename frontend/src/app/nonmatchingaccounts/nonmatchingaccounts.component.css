@@ -4,8 +4,6 @@
     width: 100%;
     font-size: 14px;
   }
- 
-  
   
   td, th {
     border: 1px solid #dddddd;
@@ -20,4 +18,8 @@
   #flagged_accounts_title{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  #flagged_accounts_export_div{
+    padding-bottom: 5px;
   }

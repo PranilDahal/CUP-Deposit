@@ -9,22 +9,39 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BalancebycontactComponent implements OnInit {
 
-  balancebycontact:any = [] ;
-  constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
+  balancebycontact: any = [];
+  constructor(public rest: RestapiService, private route: ActivatedRoute, private router: Router) { }
 
-  
+  currentselection: string='';
+
   ngOnInit() {
+  }
 
-	// this.getBalanceByContact();
+  getBalanceByContact(entityname: string) {
+    this.balancebycontact = [];
+
+    if (entityname === "*") {
+      this.rest.getBalanceByContact().subscribe((data: {}) => {
+        console.log(data);
+        this.balancebycontact = data;
+      });
+    }
+
+    else if (entityname && entityname.trim()) {
+      this.rest.searchBbcByName(entityname).subscribe((data: {}) => {
+        console.log(data);
+        this.balancebycontact = data;
+      });
+    }
+
+    else {
+      this.balancebycontact = [];
+    }
 
   }
-  
-  getBalanceByContact() {
-    this.balancebycontact = [];
-    this.rest.getBalanceByContact().subscribe((data: {}) => {
-      console.log(data);
-      this.balancebycontact = data;
-    });
+
+  onAccountSelection(acct: string){
+    this.currentselection = acct
   }
 
 }

@@ -11,12 +11,9 @@ export class BalancebyplanComponent implements OnInit {
 
   balancebyplan:any = [] ;
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
-
   
   ngOnInit() {
-
-	// this.getBalanceByPlan();
-
+	//  this.getBalanceByPlan();
   }
   
   getBalanceByPlan() {

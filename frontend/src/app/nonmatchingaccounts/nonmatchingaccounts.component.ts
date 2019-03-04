@@ -17,8 +17,6 @@ export class NonmatchingaccountsComponent implements OnInit {
   // Function that gets called when the componenet is initialized
   ngOnInit() {
     this.getNonMatchingAccounts();
-   
-
   }
 
   getNonMatchingAccounts() {

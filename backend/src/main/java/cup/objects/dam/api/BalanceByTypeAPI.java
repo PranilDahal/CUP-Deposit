@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class BalanceByTypeAPI {
 	@Autowired
 	BalanceByPlanExtractor planDAM;
 	/**
-	 * @return GET - http://localhost:8080/balances/contact | Returns individual balances by contact objects
+	 * @return GET - http://localhost:8080/api/v1/balances/contact | Returns individual balances by contact objects
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
@@ -32,12 +33,21 @@ public class BalanceByTypeAPI {
 	}
 
 	/**
-	 * @return GET - http://localhost:8080/balances/plan | Returns individual balances by plan objects
+	 * @return GET - http://localhost:8080/api/v1/balances/plan | Returns individual balances by plan objects
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
 	public List<BalanceByPlan> getBBP() {
 		return planDAM.getBalancesByPlan();
+	}
+	
+	/**
+	 * @return GET - http://localhost:8080/api/v1/balances/search/bbc/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
+	 */
+	@CrossOrigin
+	@RequestMapping(value = "/search/bbc/{name}", method = RequestMethod.GET)
+	public List<BalanceByContact> searchBBC(@PathVariable("name") String name) {
+		return contactDAM.getBalanceByContactSearchByName(name) ;
 	}
 	
 }

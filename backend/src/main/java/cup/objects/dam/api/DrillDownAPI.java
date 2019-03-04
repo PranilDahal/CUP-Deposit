@@ -11,29 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cup.objects.DDAccountTransHistory;
 import cup.objects.DDAccountsByContact;
-import cup.objects.DDAllAccountTransHistory;
-import cup.objects.DDAllPlanTransHistory;
 import cup.objects.dam.DDAccountTransHistoryExtractor;
 import cup.objects.dam.DDAccountsByContactExtractor;
-import cup.objects.dam.DDAllAccountTransHistoryExtractor;
-import cup.objects.dam.DDAllPlanTransHistoryExtractor;
 
 @RestController
 @RequestMapping("api/v1")
 
 public class DrillDownAPI {
 
-	@Autowired
-	DDAllPlanTransHistoryExtractor planDAM;
+//	@Autowired
+//	DDAllPlanTransHistoryExtractor planDAM;
 	
 	/**
 	 * @return GET - http://localhost:8080/api/v1/planTransHistory| Returns ALL transaction history for ALL plans of a contact
 	 */
-	@CrossOrigin
-	@RequestMapping(value = "/planTransHistory", method = RequestMethod.GET)
-	public List<DDAllPlanTransHistory> getAllPlanTransHistory() {
-		return planDAM.getAllPlanTransHistory() ;
-	}
+//	@CrossOrigin
+//	@RequestMapping(value = "/planTransHistory", method = RequestMethod.GET)
+//	public List<DDAllPlanTransHistory> getAllPlanTransHistory() {
+//		return planDAM.getAllPlanTransHistory() ;
+//	}
 	
 	@Autowired
 	DDAccountsByContactExtractor accountsByContactDAM;
@@ -60,15 +56,15 @@ public class DrillDownAPI {
 		return accountDAM.getAllAccountTransHistory(accountnumber) ;
 	}
 	
-	@Autowired
-	DDAllAccountTransHistoryExtractor allAccountDAM;
+//	@Autowired
+//	DDAllAccountTransHistoryExtractor allAccountDAM;
 	
 	/**
 	 * @return GET - http://localhost:8080/api/v1/allAccountTransHistory | Returns ALL transaction history for ALL accounts of a contact
 	 */
-	@CrossOrigin
-	@RequestMapping(value = "/allAccountTransHistory", method = RequestMethod.GET)
-	public List<DDAllAccountTransHistory> getAllAccountTransHistory() {
-		return allAccountDAM.getAllAccountTransHistory() ;
-	}
+//	@CrossOrigin
+//	@RequestMapping(value = "/allAccountTransHistory", method = RequestMethod.GET)
+//	public List<DDAllAccountTransHistory> getAllAccountTransHistory() {
+//		return allAccountDAM.getAllAccountTransHistory() ;
+//	}
 }

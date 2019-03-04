@@ -54,8 +54,7 @@ public class BalanceByContactExtractor {
 			+ "			left outer join globalentityaccount GE on A.entityaccountid = ge.globalentityaccountid\r\n"
 			+ "		where  CT.NAME = 'ACCOUNT WITHDRAWAL'\r\n"
 			+ "		group by GE.ACCOUNTNUMBER) W on GLOBALENTITYACCOUNT.ACCOUNTNUMBER = W.ACCOUNTNUMBER\r\n"
-			+ "				\r\n" + "\r\n" + "\r\n" + "where TYPENAME = 'Condition Check'\r\n"
-			+ "ORDER BY ACCOUNT_NAME, CATRANSACTION.TRANSACTIONDATE\r\n";
+			+ "				\r\n" + "\r\n" + "\r\n" + "where TYPENAME = 'Condition Check'\r\n";
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -95,7 +94,12 @@ public class BalanceByContactExtractor {
 	}
 	
 	public List<BalanceByContact> getBalancesByContact(){
-		List<BalanceByContact> accts = this.jdbcTemplate.query(GET_BALANCES_BY_CONTACT, new Mapper());
+		List<BalanceByContact> accts = this.jdbcTemplate.query(GET_BALANCES_BY_CONTACT+ "ORDER BY ACCOUNT_NAME, CATRANSACTION.TRANSACTIONDATE\r\n", new Mapper());
+		return accts;
+	}
+	
+	public List<BalanceByContact> getBalanceByContactSearchByName(String ContactName){
+		List<BalanceByContact> accts = this.jdbcTemplate.query(GET_BALANCES_BY_CONTACT+ "and GLOBALENTITYNAME like '%"+ContactName+"%'", new Mapper());
 		return accts;
 	}
 }

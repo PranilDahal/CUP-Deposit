@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class DDAccountTransHistory {
 
-	String globalentityaccountid, accountnumber;
+	String accountnumber;
 	double amount;
 	String status, type;
 	Date paydate;

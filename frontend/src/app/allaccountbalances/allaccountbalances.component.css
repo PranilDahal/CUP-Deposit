@@ -1,5 +1,4 @@
 #all_account_balances_table {
-
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -10,7 +9,7 @@
   td, th {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 5px;
   }
   
   #all_account_balances_tr:nth-child(even) {
@@ -20,6 +19,8 @@
   #all_account_balances_title{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-
   }
 
+  #all_account_balance_search_div{
+    padding-right: 5%;
+  }
