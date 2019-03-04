@@ -14,7 +14,7 @@ export class AllaccountbalancesComponent implements OnInit {
 
   // Function that gets called when the componenet is initialized
   ngOnInit() {
-    this.getAllAccountBalances();
+    // this.getAllAccountBalances();
   }
 
   getAllAccountBalances() {

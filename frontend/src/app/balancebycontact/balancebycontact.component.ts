@@ -14,7 +14,9 @@ export class BalancebycontactComponent implements OnInit {
 
   
   ngOnInit() {
-	this.getBalanceByContact();
+
+	// this.getBalanceByContact();
+
   }
   
   getBalanceByContact() {

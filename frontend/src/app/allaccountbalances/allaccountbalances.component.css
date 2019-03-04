@@ -1,4 +1,5 @@
 #all_account_balances_table {
+
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -19,4 +20,6 @@
   #all_account_balances_title{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+
   }
+

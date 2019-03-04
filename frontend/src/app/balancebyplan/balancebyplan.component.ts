@@ -14,7 +14,9 @@ export class BalancebyplanComponent implements OnInit {
 
   
   ngOnInit() {
-	this.getBalanceByPlan();
+
+	// this.getBalanceByPlan();
+
   }
   
   getBalanceByPlan() {
