@@ -33,7 +33,9 @@
 		<tbody>
 			<tr *ngFor="let x of balancebycontact; let i=index;" id="balancebycontact_tr">
 				<td>{{x.transGlobalName}}</td>
-				<td (click)="onAccountSelection(x.accountNumber)">{{x.accountNumber}}</td>
+				<td (click)="onAccountSelection(x.accountNumber)" style="color:#071D99;cursor: pointer;">
+					<strong>{{x.accountNumber}}</strong>
+				</td>
 				<td>{{x.typeName}}</td>
 				<td>{{x.accountName}}</td>
 				<td>{{x.description}}</td>

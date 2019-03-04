@@ -5,10 +5,17 @@
   font-size: 14px;
 }
 
-td, th {
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+th{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  position: sticky;
 }
 
 #balancebycontact_tr:nth-child(even) {
