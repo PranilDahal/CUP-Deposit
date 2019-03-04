@@ -1,18 +1,13 @@
 package cup.objects.dam;
 
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -32,9 +27,7 @@ public class DDAllPlanTransHistoryExtractor {
 			"left join CATRANSACTIONTYPE CATT on cat.CATRANSACTIONTYPEID = catt.CATRANSACTIONTYPEID\r\n" + 
 			"left join CATRANSACTIONPAYMENT CATP on cat.CATRANSACTIONID = catp.CATRANSACTIONID\r\n" + 
 			"left join CAPAYMENTMETHOD CAP on catp.CAPAYMENTTYPEID = cap.CAPAYMENTTYPEID\r\n" + 
-			"where catp.PAYMENTAMOUNT is not NULL and ge.GLOBALENTITYNAME like '%EZ Permits%'\r\n" + 
-			"--where PLANNUMBER like '%RCUP-CP97014-25224%'\r\n" + 
-			"order by PlanNum, PayDate desc";
+			"where catp.PAYMENTAMOUNT is not NULL and P.plannumber = '";
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -67,9 +60,10 @@ public class DDAllPlanTransHistoryExtractor {
 
 	}
 	
-	public List<DDAllPlanTransHistory> getAllPlanTransHistory() {
+	public List<DDAllPlanTransHistory> getAllPlanTransHistory(String plannumber) {
 
-		List <DDAllPlanTransHistory> accts = this.jdbcTemplate.query(GET_ALL_PLAN_TRANS_HISTORY, new Mapper());
+		List <DDAllPlanTransHistory> accts = this.jdbcTemplate.query(GET_ALL_PLAN_TRANS_HISTORY + plannumber + "'"
+				+ " order by PayDate asc", new Mapper());
 		return accts;
 		
 	}

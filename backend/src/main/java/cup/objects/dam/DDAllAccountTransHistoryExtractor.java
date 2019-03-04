@@ -27,7 +27,7 @@ public class DDAllAccountTransHistoryExtractor {
 			"left join CATRANSACTIONTYPE CATT on cat.CATRANSACTIONTYPEID = catt.CATRANSACTIONTYPEID\r\n" + 
 			"left join CATRANSACTIONPAYMENT CATP on cat.CATRANSACTIONID = catp.CATRANSACTIONID\r\n" + 
 			"left join CAPAYMENTMETHOD CAP on catp.CAPAYMENTTYPEID = cap.CAPAYMENTTYPEID\r\n" + 
-			"where gea.ACCOUNTNUMBER is not null and catp.PAYMENTAMOUNT is not null and ge.GLOBALENTITYNAME like '%ABELL HEL%'";
+			"where gea.ACCOUNTNUMBER is not null and catp.PAYMENTAMOUNT is not null and ge.GLOBALENTITYID = '";
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -60,9 +60,9 @@ public class DDAllAccountTransHistoryExtractor {
 
 	}
 	
-	public List<DDAllAccountTransHistory> getAllAccountTransHistory() {
+	public List<DDAllAccountTransHistory> getAllAccountTransHistory(String globalentityid) {
 
-		List <DDAllAccountTransHistory> accts = this.jdbcTemplate.query(GET_ALL_ACCOUNT_TRANS_HISTORY, new Mapper());
+		List <DDAllAccountTransHistory> accts = this.jdbcTemplate.query(GET_ALL_ACCOUNT_TRANS_HISTORY + globalentityid + "'", new Mapper());
 		return accts;
 		
 	}

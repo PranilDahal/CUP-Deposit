@@ -27,12 +27,12 @@ public class DrillDownAPI {
 	DDAllPlanTransHistoryExtractor planDAM;
 	
 	/**
-	 * @return GET - http://localhost:8080/api/v1/planTransHistory| Returns ALL transaction history for ALL plans of a contact
+	 * @return GET - http://localhost:8080/api/v1/planTransHistory/EFNL2017000129| Returns ALL transaction history for ALL plans of a contact
 	 */
 	@CrossOrigin
-	@RequestMapping(value = "/planTransHistory", method = RequestMethod.GET)
-	public List<DDAllPlanTransHistory> getAllPlanTransHistory() {
-		return planDAM.getAllPlanTransHistory() ;
+	@RequestMapping(value = "/planTransHistory/{plannumber}", method = RequestMethod.GET)
+	public List<DDAllPlanTransHistory> getAllPlanTransHistory(@PathVariable("plannumber") String plannumber) {
+		return planDAM.getAllPlanTransHistory(plannumber) ;
 	}
 	
 	@Autowired
@@ -64,11 +64,11 @@ public class DrillDownAPI {
 	DDAllAccountTransHistoryExtractor allAccountDAM;
 	
 	/**
-	 * @return GET - http://localhost:8080/api/v1/allAccountTransHistory | Returns ALL transaction history for ALL accounts of a contact
+	 * @return GET - http://localhost:8080/api/v1/allAccountTransHistory/582AFF18-C1A2-4483-B1EE-51B072A8C6E0 | Returns ALL transaction history for ALL accounts of a contact
 	 */
 	@CrossOrigin
-	@RequestMapping(value = "/allAccountTransHistory", method = RequestMethod.GET)
-	public List<DDAllAccountTransHistory> getAllAccountTransHistory() {
-		return allAccountDAM.getAllAccountTransHistory() ;
+	@RequestMapping(value = "/allAccountTransHistory/{globalentityid}", method = RequestMethod.GET)
+	public List<DDAllAccountTransHistory> getAllAccountTransHistory(@PathVariable("globalentityid") String globalentityid) {
+		return allAccountDAM.getAllAccountTransHistory(globalentityid) ;
 	}
 }
