@@ -2,17 +2,52 @@
 
 <h2 id="flagged_accounts_title"><b>Flagged Accounts</b></h2>
 
-    <div class="col" id="flagged_accounts_export_div">
-
+  <div class="row">
+     <div class="col" id="flagged_accounts_export_div"> 
+      <div class="btn-group mr-2" role="group">
        <input type="button" id="btnExport" class="btn btn-outline-info" 
-        onclick="export_table_to_excel('nonmatchingaccounts_table', 'xlsx', 'Non Matching')" value="Export to Excel"/> 
+        onclick="export_table_to_excel('nonmatchingaccounts_table', 'xlsx', 'Non Matching')" value="Excel"/> 
 
     </div>
 
-<table id="nonmatchingaccounts_table">
+    
+    <div class="btn-group mr-2" role="group">
 
-  <tbody>
-      <tr id="nonmatchingaccounts_th" >
+      <input type="button" id="btnPDF" class="btn btn-outline-info" 
+       onclick="export_pdf('nonmatchingaccounts_table','Non Matching')" value="PDF"/> 
+
+   </div>
+
+  
+  </div>
+  <br>
+  
+  <!-- <div id="editor"></div> -->
+
+<div  id="nonmatchingaccounts_table">
+<table>
+  <!-- <thead style="display:none"> -->
+  
+    <thead>
+        <!-- <tr style="display:none">
+        -->
+        <tr id="nonmatchingaccounts_th" >
+          <th>Name</th>
+          <th>Company</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Last Changed On</th>
+          <th>Last Changed By</th>
+          <th>Type Name</th>
+          <th>Email</th>
+      
+      </tr>
+ 
+    </thead>
+ 
+    <tbody>
+    <!-- excel -->
+      <!-- <tr id="nonmatchingaccounts_th" >
 
           <td>Name</td>
           <td>Company</td>
@@ -23,7 +58,7 @@
           <td>Type Name</td>
           <td>Email</td>
       
-      </tr>
+      </tr> -->
       <tr></tr>
       
     <tr *ngFor="let x of nonmatchingaccounts; let i=index;" id="nonmatchingaccounts_tr">
@@ -38,3 +73,4 @@
     </tr>
   </tbody>
 </table>
+</div>

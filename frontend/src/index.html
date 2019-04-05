@@ -14,6 +14,12 @@
 
             <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.0/jspdf.plugin.autotable.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.0/jspdf.plugin.autotable.min.js"></script> -->
+
             <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
             <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 
@@ -31,6 +37,83 @@
         	var wb = XLSX.utils.table_to_book(document.getElementById(id), {sheet:fn});
         	var fname = fn  + ".xlsx";
       	XLSX.writeFile(wb, fname);
+      }
+  </script>
+
+  <!-- <script>
+  //      function export_pdf(fname) {
+        
+  //       var doc = new jsPDF();
+      
+  //       var specialElementHandlers = {
+  //         '#editor': function (element, renderer) {
+  //         return true;
+    
+  //       }
+  //     };
+
+  //     $('#btnPDF').click(function () {   
+  //          doc.fromHTML($('#content').html(), 15, 15, {
+  //             'width': 170,
+  //           'elementHandlers': specialElementHandlers
+  //       });
+  //        doc.save(fname + '.pdf');
+  //     });
+
+
+  // }
+
+  function export_pdf(id,fname) {
+  var doc = new jsPDF('landcape', 'pt');
+
+var res = doc.autoTableHtmlToJson(document.getElementById(id));
+doc.autoTable(res.columns, res.data, {margin: {top: 80}});
+
+// var header = function(data) {
+//   doc.setFontSize(18);
+//   doc.setTextColor(40);
+//   doc.setFontStyle('normal');
+//   doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
+//   doc.text("Testing Report", data.settings.margin.left, 50);
+// };
+
+// var options = {
+//   beforePageContent: header,
+//   margin: {
+//     top: 80
+//   },
+//   startY: doc.autoTableEndPosY() + 20
+// };
+
+//doc.autoTable(res.columns, res.data, options);
+doc.save(fname + '.pdf');
+
+  }
+  </script> -->
+
+  <script>
+      function export_pdf(id, name) {
+          var sTable = document.getElementById(id).innerHTML;
+  
+          var style = "<style>";
+          style = style + "table {width: 100%;font: 15px Calibri;}";
+          style = style + "table, th, td {border: solid 2px #DDD; border-collapse: collapse;";
+          style = style + "padding: 2px 3px;text-align: center;}";
+          style = style + "</style>";
+
+          var win = window.open('', '', 'height='+screen.height+',width='+screen.width+',resizable=yes,scrollbars=yes');
+  
+          win.document.write('<!doctype html><html><head>');
+          win.document.write('<title>'+ name +'</title>');   
+          win.document.write(style);          
+          win.document.write('</head>');
+          win.document.write('<body>');
+          win.document.write(sTable);       
+          win.document.write('</body></html>');
+  
+          win.document.close(); 	
+  
+          win.print();    
       }
   </script>
 
