@@ -43,6 +43,16 @@ export class RestapiService {
     return this.http.get(endpoint + 'accountbalances/all').pipe(
       map(this.extractData));
   }
+
+  searchBbcByName(entityName:string): Observable<any> {
+    return this.http.get(endpoint + 'balances/search/bbc/'+entityName).pipe(
+      map(this.extractData));
+  }
+
+  getAccountTransHistory(acctNumber:string): Observable<any> {
+    return this.http.get(endpoint + 'accountTransHistory/'+acctNumber).pipe(
+      map(this.extractData));
+  }
   
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

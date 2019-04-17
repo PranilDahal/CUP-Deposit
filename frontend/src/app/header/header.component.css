@@ -1,4 +1,4 @@
-#regional_planning_logo{
+#la_county_logo{
     float: center;
     padding-right: 20px;
 }
@@ -11,6 +11,11 @@
 #header_wrapper{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('../../assets/img/los_angeles.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    padding-top: 5px;
+    margin-bottom: 5px;
 }
 
 #main_menu {
@@ -36,4 +41,12 @@
   
   #menu_item a:hover {
     background-color: rgb(155, 156, 75);
+  }
+
+  #website_title {
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: invert(1) grayscale(1) contrast(9) drop-shadow(.05em .05em rgb(255, 255, 255));
   }

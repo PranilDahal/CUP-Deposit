@@ -6,12 +6,14 @@
 
   <div class="row">
 
+
      <div class="col">
  
       <input type="button" id="btnExport" class="btn btn-outline-info" 
     onclick="export_table_to_excel('all_account_balances_table', 'xlsx', 'All Account Balances')" value="Export to Excel"/> 
 
     </div> 
+
 
     <div class="col" id="all_account_balance_search_div">
       <div class="float-right">
@@ -36,6 +38,7 @@
 
     <table id="all_account_balances_table">
 
+
       <tbody>
           <tr id="all_account_balances_th">
               <td scope="col">Plan Number</td>
@@ -50,6 +53,7 @@
               <td scope="col">Account Type</td>
           </tr>
           <tr></tr>
+
         <!-- <tr *ngFor="let x of allaccountbalances; let i=index;" id="all_account_balances__tr">
           <td>{{x.planNumber}}</td>
           <td>{{x.serviceArea}}</td>

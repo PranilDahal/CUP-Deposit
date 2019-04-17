@@ -1,0 +1,28 @@
+<div *ngIf="selectedbyuser" style="overflow-x:auto;" id="trans_history_wrapper">
+
+    <table id="acct_trans_history_table">
+      <thead id="balancebycontact_tr">
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Paydate</th>
+        <th>Receipt #</th>
+      </thead>
+
+      <tr>
+        <th colspan="5">Transaction History for Account Number: <u>{{selectedbyuser}}</u></th> 
+      </tr>
+  
+      <tbody>
+        <tr *ngFor="let x of transhistory; let i=index;" id="balancebycontact_tr">
+          <td>{{x.amount}}</td>
+          <td>{{x.status}}</td>
+          <td>{{x.type}}</td>
+          <td>{{x.paydate}}</td>
+          <td>{{x.receiptnumber}}</td>
+        </tr>
+      </tbody>
+  
+    </table>
+  
+  </div>

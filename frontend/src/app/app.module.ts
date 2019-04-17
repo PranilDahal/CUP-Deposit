@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { BalancebyplanComponent } from './balancebyplan/balancebyplan.component';
 import { BalancebycontactComponent } from './balancebycontact/balancebycontact.component';
 import { AllaccountbalancesComponent } from './allaccountbalances/allaccountbalances.component';
+import { TranshistoryComponent } from './transhistory/transhistory.component';
 
 const appRoutes: Routes = [
 
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     BalancebyplanComponent,
     BalancebycontactComponent,
-    AllaccountbalancesComponent
+    AllaccountbalancesComponent,
+    TranshistoryComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
