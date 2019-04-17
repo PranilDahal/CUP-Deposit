@@ -110,4 +110,9 @@ private JdbcTemplate jdbcTemplate;
 				return accts;
 			}
 
+		public List<BalanceByPlan> getBalanceByPlanSearchByName(String PlanName){
+			List<BalanceByPlan> accts = this.jdbcTemplate.query(GET_BALANCES_BY_PLAN+ "and GLOBALENTITYNAME like '%"+PlanName+"%'", new Mapper());
+			return accts;
+		}
+
 }

@@ -3,7 +3,7 @@
 <h2 id="balance_by_plan_title"><b>Balances By Plan</b></h2>
 
 <div class="balance_by_plan_topnav">
-	<input type="text" placeholder="Search..">
+	<input #entityname type="text" placeholder="Search.." (keyup.enter)="getBalanceByPlan(entityname.value)">
 </div>
 
 <div style="overflow-x:auto">
@@ -40,8 +40,9 @@
 				<tr *ngFor="let x of balancebyplan; let i=index;" id="balancebyplan_tr">
 			<td >{{x.transGlobalName}}</td>
 			<td>{{x.planNumber}}</td>
-			<!-- <td>{{x.plPlanContactId}}</td> -->
-			<td>{{x.accountNumber}}</td>
+			<td (click)="onAccountSelection(x.accountNumber)" style="color:#071D99;cursor: pointer;">
+				<strong>{{x.accountNumber}}</strong>
+			</td>
 			<td>{{x.typeName}}</td>
 			<td>{{x.accountName}}</td>
 			<td>{{x.description}}</td>
@@ -65,4 +66,7 @@
 		</table>
 
 	</div>
+</div>
+<div>
+	<app-transhistory *ngIf="currentselection" [selectedbyuser]="currentselection"></app-transhistory>
 </div>

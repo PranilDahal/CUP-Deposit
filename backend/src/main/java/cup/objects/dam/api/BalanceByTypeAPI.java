@@ -50,4 +50,13 @@ public class BalanceByTypeAPI {
 		return contactDAM.getBalanceByContactSearchByName(name) ;
 	}
 	
+	/**
+	 * @return GET - http://localhost:8080/api/v1/balances/search/bbp/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
+	 */
+	@CrossOrigin
+	@RequestMapping(value = "/search/bbp/{name}", method = RequestMethod.GET)
+	public List<BalanceByPlan> searchBBP(@PathVariable("name") String name) {
+		return planDAM.getBalanceByPlanSearchByName(name) ;
+	}
+	
 }

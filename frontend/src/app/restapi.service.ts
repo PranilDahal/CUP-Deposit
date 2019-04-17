@@ -49,6 +49,11 @@ export class RestapiService {
       map(this.extractData));
   }
 
+  searchBbpByName(entityName:string): Observable<any> {
+    return this.http.get(endpoint + 'balances/search/bbp/'+entityName).pipe(
+      map(this.extractData));
+  }
+
   getAccountTransHistory(acctNumber:string): Observable<any> {
     return this.http.get(endpoint + 'accountTransHistory/'+acctNumber).pipe(
       map(this.extractData));
