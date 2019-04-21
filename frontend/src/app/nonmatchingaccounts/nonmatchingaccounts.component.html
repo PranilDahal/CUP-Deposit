@@ -2,30 +2,67 @@
 
 <h2 id="flagged_accounts_title"><b>Flagged Accounts</b></h2>
 
-<div class="col" id="flagged_accounts_export_div">
 
-  <a id="dlink" style="display:none"></a>
+  <div class="row">
+     <div class="col" id="flagged_accounts_export_div"> 
+      <div class="btn-group mr-2" role="group">
+       <input type="button" id="btnExport" class="btn btn-outline-info" 
+        onclick="export_table_to_excel('nonmatchingaccounts_table', 'xlsx', 'Non Matching')" value="Excel"/> 
+
+    </div>
+
+    
+    <div class="btn-group mr-2" role="group">
+
+      <input type="button" id="btnPDF" class="btn btn-outline-info" 
+       onclick="export_pdf('nonmatchingaccounts_table','Non Matching')" value="PDF"/> 
+
+   </div>
+
   
-  <input type="button" class="btn btn-outline-info"
-    onclick="tableToExcel('nonmatchingaccounts_table', 'Non Matching Table', 'nonMatchingTable.xls')"
-    value="Export to Excel">
+  </div>
+  <br>
+  
+  <!-- <div id="editor"></div> -->
 
-</div>
+<div  id="nonmatchingaccounts_table">
+<table>
+  <!-- <thead style="display:none"> -->
+  
+    <thead>
+        <!-- <tr style="display:none">
+        -->
+        <tr id="nonmatchingaccounts_th" >
+          <th>Name</th>
+          <th>Company</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Last Changed On</th>
+          <th>Last Changed By</th>
+          <th>Type Name</th>
+          <th>Email</th>
+      
+      </tr>
+ 
+    </thead>
+ 
+    <tbody>
+    <!-- excel -->
+      <!-- <tr id="nonmatchingaccounts_th" >
 
-<table id="nonmatchingaccounts_table">
-  <thead id="nonmatchingaccounts_tr">
+          <td>Name</td>
+          <td>Company</td>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Last Changed On</td>
+          <td>Last Changed By</td>
+          <td>Type Name</td>
+          <td>Email</td>
+      
+      </tr> -->
+      <tr></tr>
+      
 
-    <th>Name</th>
-    <th>Company</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Last Changed On</th>
-    <th>Last Changed By</th>
-    <th>Type Name</th>
-    <th>Email</th>
-
-  </thead>
-  <tbody>
     <tr *ngFor="let x of nonmatchingaccounts; let i=index;" id="nonmatchingaccounts_tr">
       <td>{{x.name}}</td>
       <td>{{x.companyname}}</td>
@@ -38,3 +75,4 @@
     </tr>
   </tbody>
 </table>
+</div>

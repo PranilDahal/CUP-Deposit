@@ -16,6 +16,11 @@
     background-color: #dddddd;
   }
 
+  #all_account_balances_th{
+    font-weight: bold;
+    font-size: 16px;
+  }
+
   #all_account_balances_title{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -23,4 +28,6 @@
 
   #all_account_balance_search_div{
     padding-right: 5%;
+
   }
+

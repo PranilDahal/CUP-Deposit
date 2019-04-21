@@ -13,8 +13,12 @@
   
   #nonmatchingaccounts_tr:nth-child(even) {
     background-color: #dddddd;
-  }
 
+  }
+  #nonmatchingaccounts_th{
+    font-weight: bold;
+    font-size: 16px;
+  }
   #flagged_accounts_title{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
