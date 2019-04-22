@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DDAccountsByContact {
-	String globalentityid, globalentityname, firstname, lastname, Name, AccountNumber;
+	String globalentityname, firstname, lastname, AccountName, AccountNumber;
+	double balance;
 }

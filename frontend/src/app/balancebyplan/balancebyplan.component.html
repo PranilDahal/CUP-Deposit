@@ -3,7 +3,7 @@
 <h2 id="balance_by_plan_title"><b>Balances By Plan</b></h2>
 
 <div class="balance_by_plan_topnav">
-	<input type="text" placeholder="Search..">
+	<input #entityname type="text" placeholder="Search.." (keyup.enter)="getBalanceByPlan(entityname.value)">
 </div>
 
 <div style="overflow-x:auto">
@@ -15,13 +15,10 @@
 			<thead id="balancebyplan_tr">
 				<th>Name</th>
 				<th>Plan Number</th>
-				<!-- <th>PLPLANCONTACTID</th> -->
 				<th>Account Number</th>
 				<th>Type Name</th>
 				<th>Account Name</th>
 				<th>Description</th>
-				<!-- <th>GlobalEntityID</th> -->
-				<!-- <th>CATRANSACTIONID</th> -->
 				<th>Transaction Type</th>
 				<th>Transaction Date</th>
 				<th>Receipt Number</th>
@@ -29,7 +26,6 @@
 				<th>Received By</th>
 				<th>Payment Date</th>
 				<th>Payment Method</th>
-				<!-- <th>Payment Amount</th> -->
 				<th>Deposit</th>
 				<th>Withdrawl</th>
 				<th>Balance</th>
@@ -39,14 +35,15 @@
 
 				<tr *ngFor="let x of balancebyplan; let i=index;" id="balancebyplan_tr">
 			<td >{{x.transGlobalName}}</td>
-			<td>{{x.planNumber}}</td>
-			<!-- <td>{{x.plPlanContactId}}</td> -->
-			<td>{{x.accountNumber}}</td>
+			<td (click)="onPlanSelection(x.planNumber)" style="color:#071D99;cursor: pointer;">
+				<strong>{{x.planNumber}}</strong>
+			</td>
+			<td (click)="onAccountSelection(x.accountNumber)" style="color:#071D99;cursor: pointer;">
+				<strong>{{x.accountNumber}}</strong>
+			</td>
 			<td>{{x.typeName}}</td>
 			<td>{{x.accountName}}</td>
 			<td>{{x.description}}</td>
-			<!-- <td>{{x.globalEntityId}} </td> -->
-			<!-- <td>{{x.caTransactionId}} </td> -->
 			<td>{{x.transactionType}} </td>
 			<td>{{x.transactionDate}} </td>
 			<td>{{x.receiptNumber}} </td>
@@ -54,7 +51,6 @@
 			<td>{{x.receivedBy}} </td>
 			<td>{{x.paymentDate}} </td>
 			<td>{{x.paymentMethod}} </td>
-			<!-- <td>{{x.paymentAmount2}} </td> -->
 			<td>{{x.deposit}} </td>
 			<td>{{x.withdrawal}} </td>
 			<td>{{x.balance}} </td>
@@ -65,4 +61,10 @@
 		</table>
 
 	</div>
+</div>
+<div>
+	<app-planhistory *ngIf="planselection" [selectedbyuser]="planselection"></app-planhistory>
+</div>
+<div>
+	<app-transhistory *ngIf="acctselection" [selectedbyuser]="acctselection"></app-transhistory>
 </div>

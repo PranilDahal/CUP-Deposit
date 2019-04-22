@@ -16,16 +16,7 @@ import cup.objects.DDAccountTransHistory;
 
 @Component
 public class DDAccountTransHistoryExtractor {
-	private static final String GET_ACCOUNT_TRANS_HISTORY = "select distinct gea.ACCOUNTNUMBER, catp.PAYMENTAMOUNT as Amount, \r\n" + 
-			"cats.name as Status, catt.name as Type, catp.PAYMENTDATE as PayDate, cat.RECEIPTNUMBER \r\n" + 
-			"from GLOBALENTITYACCOUNT gea \r\n" + 
-			"left join CATRANSACTIONACCOUNT CATA on gea.GLOBALENTITYACCOUNTID = cata.ENTITYACCOUNTID\r\n" + 
-			"left join CATRANSACTION CAT on cata.CATRANSACTIONID = cat.CATRANSACTIONID\r\n" + 
-			"left join CATRANSACTIONSTATUS CATS on cat.CATRANSACTIONSTATUSID = cats.CATRANSACTIONSTATUSID\r\n" + 
-			"left join CATRANSACTIONTYPE CATT on cat.CATRANSACTIONTYPEID = catt.CATRANSACTIONTYPEID\r\n" + 
-			"left join CATRANSACTIONPAYMENT CATP on cat.CATRANSACTIONID = catp.CATRANSACTIONID\r\n" + 
-			"left join CAPAYMENTMETHOD CAP on catp.CAPAYMENTTYPEID = cap.CAPAYMENTTYPEID\r\n" + 
-			"where catp.PAYMENTAMOUNT is not null and gea.ACCOUNTNUMBER like '";
+	private static final String GET_ACCOUNT_TRANS_HISTORY = "select distinct gea.NAME as AccountName, gea.ACCOUNTNUMBER, catp.PAYMENTAMOUNT as Amount, cats.name as Status, catt.name as Type, catp.PAYMENTDATE as PayDate, cat.RECEIPTNUMBER, gea.BALANCE from GLOBALENTITYACCOUNT gea inner join CATRANSACTIONACCOUNT CATA on gea.GLOBALENTITYACCOUNTID = cata.ENTITYACCOUNTID inner join CATRANSACTION CAT on cata.CATRANSACTIONID = cat.CATRANSACTIONID inner join CATRANSACTIONSTATUS CATS on cat.CATRANSACTIONSTATUSID = cats.CATRANSACTIONSTATUSID inner join CATRANSACTIONTYPE CATT on cat.CATRANSACTIONTYPEID = catt.CATRANSACTIONTYPEID inner join CATRANSACTIONPAYMENT CATP on cat.CATRANSACTIONID = catp.CATRANSACTIONID inner join CAPAYMENTMETHOD CAP on catp.CAPAYMENTTYPEID = cap.CAPAYMENTTYPEID where gea.ACCOUNTNUMBER = '";
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -40,6 +31,8 @@ public class DDAccountTransHistoryExtractor {
 		@Override
 		public DDAccountTransHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
 			
+			String accountName = rs.getString("AccountName");
+			
 			String accountnumber = rs.getString("ACCOUNTNUMBER");
 			
 			double amount = rs.getDouble("Amount");
@@ -51,8 +44,10 @@ public class DDAccountTransHistoryExtractor {
 			Date paydate = rs.getDate("PayDate");
 			
 			String receiptnumber = rs.getString("RECEIPTNUMBER");
+
+			double balance = rs.getDouble("BALANCE");
 			
-			return new DDAccountTransHistory( accountnumber, amount, status, type, paydate, receiptnumber);
+			return new DDAccountTransHistory( accountName, accountnumber, amount, status, type, paydate, receiptnumber, balance);
 
 		}
 

@@ -48,9 +48,19 @@ export class RestapiService {
     return this.http.get(endpoint + 'balances/search/bbc/'+entityName).pipe(
       map(this.extractData));
   }
-
+  
   getAccountTransHistory(acctNumber:string): Observable<any> {
     return this.http.get(endpoint + 'accountTransHistory/'+acctNumber).pipe(
+      map(this.extractData));
+  }
+
+  searchBbpByNumber(entityNumber:string): Observable<any> {
+    return this.http.get(endpoint + 'balances/search/bbp/'+entityNumber).pipe(
+      map(this.extractData));
+  }
+
+  getPlanTransHistory(plannumber:string): Observable<any> {
+    return this.http.get(endpoint + 'planTransHistory/'+plannumber).pipe(
       map(this.extractData));
   }
   

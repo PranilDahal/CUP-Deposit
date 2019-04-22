@@ -15,10 +15,7 @@ import cup.objects.DDAccountsByContact;
 
 @Component
 public class DDAccountsByContactExtractor {
-	private static final String GET_ACCOUNTS_BY_CONTACT = "select ge.globalentityid, ge.globalentityname, ge.firstname, ge.lastname, gea.Name, gea.AccountNumber from GLOBALENTITY GE\r\n" + 
-			"left join GLOBALENTITYACCOUNTENTITY GEAE on ge.GLOBALENTITYID = geae.GLOBALENTITYID\r\n" + 
-			"left join GLOBALENTITYACCOUNT GEA on geae.GLOBALENTITYACCOUNTID = gea.GLOBALENTITYACCOUNTID\r\n" + 
-			"where gea.GLOBALENTITYACCOUNTID is not null and ge.GLOBALENTITYID = ";
+	private static final String GET_ACCOUNTS_BY_CONTACT = "select ge.globalentityname, ge.firstname, ge.lastname, gea.Name as AccountName, gea.AccountNumber, gea.balance from GLOBALENTITY GE inner join GLOBALENTITYACCOUNTENTITY GEAE on ge.GLOBALENTITYID = geae.GLOBALENTITYID inner join GLOBALENTITYACCOUNT GEA on geae.GLOBALENTITYACCOUNTID = gea.GLOBALENTITYACCOUNTID inner join CATRANSACTIONACCOUNT CATA on cata.ENTITYACCOUNTID = gea.GLOBALENTITYACCOUNTID where ge.GLOBALENTITYID in (select GLOBALENTITYID from GLOBALENTITY where GLOBALENTITYNAME = ";
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -33,27 +30,27 @@ public class DDAccountsByContactExtractor {
 		@Override
 		public DDAccountsByContact mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-			String globalentityid = rs.getString("globalentityid");
-			
 			String globalentityname = rs.getString("globalentityname");
 			
 			String firstname = rs.getString("firstname");
 			
 			String lastname = rs.getString("lastname");
 			
-			String Name = rs.getString("Name");
+			String AccountName = rs.getString("AccountName");
 			
 			String AccountNumber = rs.getString("AccountNumber");
 			
-			return new DDAccountsByContact(globalentityid, globalentityname, firstname, lastname, Name, AccountNumber);
+			double balance = rs.getDouble("balance");
+			
+			return new DDAccountsByContact(globalentityname, firstname, lastname, AccountName, AccountNumber, balance);
 
 		}
 
 	}
 	
-	public List<DDAccountsByContact> getAllAccountsByContact(String globalentityid) {
+	public List<DDAccountsByContact> getAllAccountsByContact(String globalentityname) {
 
-		List <DDAccountsByContact> accts = this.jdbcTemplate.query(GET_ACCOUNTS_BY_CONTACT + "'" + globalentityid + "'", new Mapper());
+		List <DDAccountsByContact> accts = this.jdbcTemplate.query(GET_ACCOUNTS_BY_CONTACT + "'" + globalentityname + "')", new Mapper());
 		return accts;
 		
 	}

@@ -63,8 +63,8 @@ public class BalanceByPlanExtractor {
 			"		where  CT.NAME = 'ACCOUNT WITHDRAWAL'\r\n" + 
 			"		group by GE.ACCOUNTNUMBER) W on GEA.ACCOUNTNUMBER = W.ACCOUNTNUMBER\r\n" + 
 			"\r\n" + 
-			"where TYPENAME = 'Condition Check'\r\n" + 
-			"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE";
+			"where TYPENAME = 'Condition Check'\r\n"; //" + 
+			//"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE
 			
 private JdbcTemplate jdbcTemplate;
 
@@ -106,8 +106,15 @@ private JdbcTemplate jdbcTemplate;
 			}
 			
 			public List<BalanceByPlan> getBalancesByPlan(){
-				List<BalanceByPlan> accts = this.jdbcTemplate.query(GET_BALANCES_BY_PLAN, new Mapper());
+				List<BalanceByPlan> accts = this.jdbcTemplate.query(GET_BALANCES_BY_PLAN  + 
+			"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE", new Mapper());
 				return accts;
 			}
+
+		public List<BalanceByPlan> getBalanceByPlanSearchByNumber(String planNumber){
+			List<BalanceByPlan> accts = this.jdbcTemplate.query(GET_BALANCES_BY_PLAN+ "and PLANNUMBER like '%"+planNumber+"%' " + 
+			"ORDER BY Trans_global_name, ACCOUNT_NAME, CT.TRANSACTIONDATE", new Mapper());
+			return accts;
+		}
 
 }

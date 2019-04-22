@@ -7,12 +7,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DDAccountTransHistory {
+public class DDPlanTransHistory {
 
-	String AccountName, accountnumber;
-	double amount;
-	String status, type;
-	Date paydate;
+	String Contact, plannumber;
+	double paymentamount, balance;
+	String description;
+	Date date;
 	String receiptnumber;
-	double balance;
 }
