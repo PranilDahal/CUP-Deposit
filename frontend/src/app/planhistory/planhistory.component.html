@@ -1,0 +1,24 @@
+<div *ngIf="selectedbyuser" style="overflow-x:auto;" id="plan_history_wrapper">
+Transaction History for Plan Number: <u>{{selectedbyuser}}</u>
+  <table id="plan_trans_history_table">
+    <thead id="balancebyplan_tr">
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Receipt #</th>
+      <th>Balance</th>
+    </thead>    
+  
+    <tbody>
+      <tr *ngFor="let x of planhistory; let i=index;" id="balancebyplan_tr">
+        <td>{{x.paymentamount}}</td>
+        <td>{{x.description}}</td>
+        <td>{{x.date}}</td>
+        <td>{{x.receiptnumber}}</td>
+        <td>{{x.balance}}</td>
+      </tr>
+    </tbody>
+  
+  </table>
+  
+</div>

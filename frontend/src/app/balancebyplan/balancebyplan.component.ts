@@ -12,7 +12,8 @@ export class BalancebyplanComponent implements OnInit {
   balancebyplan:any = [] ;
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
   
-  currentselection: string='';
+  planselection: string='';
+  acctselection: string='';
 
   ngOnInit() {
   }
@@ -28,7 +29,7 @@ export class BalancebyplanComponent implements OnInit {
     }
 
     else if (entityname && entityname.trim()) {
-      this.rest.searchBbpByName(entityname).subscribe((data: {}) => {
+      this.rest.searchBbpByNumber(entityname).subscribe((data: {}) => {
         console.log(data);
         this.balancebyplan = data;
       });
@@ -41,7 +42,11 @@ export class BalancebyplanComponent implements OnInit {
   }
 
   onAccountSelection(acct: string){
-    this.currentselection = acct
+    this.acctselection = acct
+  }
+
+  onPlanSelection(plan: string){
+    this.planselection = plan
   }
 
 }

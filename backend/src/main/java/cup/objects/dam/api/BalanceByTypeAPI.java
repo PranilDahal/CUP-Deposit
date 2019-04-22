@@ -56,7 +56,7 @@ public class BalanceByTypeAPI {
 	@CrossOrigin
 	@RequestMapping(value = "/search/bbp/{name}", method = RequestMethod.GET)
 	public List<BalanceByPlan> searchBBP(@PathVariable("name") String name) {
-		return planDAM.getBalanceByPlanSearchByName(name) ;
+		return planDAM.getBalanceByPlanSearchByNumber(name) ;
 	}
 	
 }

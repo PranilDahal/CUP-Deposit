@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cup.objects.DDPlanTransHistory;
+import cup.objects.dam.DDPlanTransHistoryExtractor;
 import cup.objects.DDAccountTransHistory;
 import cup.objects.DDAccountsByContact;
 import cup.objects.dam.DDAccountTransHistoryExtractor;
@@ -19,17 +21,17 @@ import cup.objects.dam.DDAccountsByContactExtractor;
 
 public class DrillDownAPI {
 
-//	@Autowired
-//	DDAllPlanTransHistoryExtractor planDAM;
+	@Autowired
+	DDPlanTransHistoryExtractor planTransDAM;
 	
 	/**
 	 * @return GET - http://localhost:8080/api/v1/planTransHistory| Returns ALL transaction history for ALL plans of a contact
 	 */
-//	@CrossOrigin
-//	@RequestMapping(value = "/planTransHistory", method = RequestMethod.GET)
-//	public List<DDAllPlanTransHistory> getAllPlanTransHistory() {
-//		return planDAM.getAllPlanTransHistory() ;
-//	}
+	@CrossOrigin
+	@RequestMapping(value = "/planTransHistory/{plannumber}", method = RequestMethod.GET)
+	public List<DDPlanTransHistory> getAllPlanTransHistory(@PathVariable("plannumber") String plannumber) {
+		return planTransDAM.getAllPlanTransHistory(plannumber) ;
+	}
 	
 	@Autowired
 	DDAccountsByContactExtractor accountsByContactDAM;
@@ -38,14 +40,14 @@ public class DrillDownAPI {
 	 * @return GET - http://localhost:8080/api/v1/allaccountsbycontact/001a1deb-b99f-4bab-99cd-201f9a6ceb42 | Returns ALL accounts by contact
 	 */
 	@CrossOrigin
-	@RequestMapping(value = "/allaccountsbycontact/{globalentityaccountid}", method = RequestMethod.GET)
-	public List<DDAccountsByContact> getAllAccountsByContact(@PathVariable("globalentityaccountid") String globalentityaccountid) {
-		return accountsByContactDAM.getAllAccountsByContact(globalentityaccountid) ;
+	@RequestMapping(value = "/allaccountsbycontact/{globalentityaccountname}", method = RequestMethod.GET)
+	public List<DDAccountsByContact> getAllAccountsByContact(@PathVariable("globalentityaccountname") String globalentityaccountname) {
+		return accountsByContactDAM.getAllAccountsByContact(globalentityaccountname) ;
 	}
 	
 	
 	@Autowired
-	DDAccountTransHistoryExtractor accountDAM;
+	DDAccountTransHistoryExtractor accountTransDAM;
 	
 	/**
 	 * @return GET - http://localhost:8080/api/v1/accountTransHistory/000015-2015 | Returns ALL transaction history for that account
@@ -53,18 +55,7 @@ public class DrillDownAPI {
 	@CrossOrigin
 	@RequestMapping(value = "/accountTransHistory/{accountnumber}", method = RequestMethod.GET)
 	public List<DDAccountTransHistory> getAccountTransHistory(@PathVariable("accountnumber") String accountnumber) {
-		return accountDAM.getAllAccountTransHistory(accountnumber) ;
+		return accountTransDAM.getAllAccountTransHistory(accountnumber) ;
 	}
 	
-//	@Autowired
-//	DDAllAccountTransHistoryExtractor allAccountDAM;
-	
-	/**
-	 * @return GET - http://localhost:8080/api/v1/allAccountTransHistory | Returns ALL transaction history for ALL accounts of a contact
-	 */
-//	@CrossOrigin
-//	@RequestMapping(value = "/allAccountTransHistory", method = RequestMethod.GET)
-//	public List<DDAllAccountTransHistory> getAllAccountTransHistory() {
-//		return allAccountDAM.getAllAccountTransHistory() ;
-//	}
 }

@@ -14,6 +14,7 @@ import { BalancebyplanComponent } from './balancebyplan/balancebyplan.component'
 import { BalancebycontactComponent } from './balancebycontact/balancebycontact.component';
 import { AllaccountbalancesComponent } from './allaccountbalances/allaccountbalances.component';
 import { TranshistoryComponent } from './transhistory/transhistory.component';
+import { PlanhistoryComponent } from './planhistory/planhistory.component';
 
 const appRoutes: Routes = [
 
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     BalancebyplanComponent,
     BalancebycontactComponent,
     AllaccountbalancesComponent,
-    TranshistoryComponent
+    TranshistoryComponent,
+    PlanhistoryComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
