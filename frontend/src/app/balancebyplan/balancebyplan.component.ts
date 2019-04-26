@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BalancebyplanComponent implements OnInit {
 
   balancebyplan:any = [] ;
+  loading:boolean = false;
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
   
   planselection: string='';
@@ -19,12 +20,14 @@ export class BalancebyplanComponent implements OnInit {
   }
 
   getBalanceByPlan(entityname: string) {
+    this.loading = true;
     this.balancebyplan = [];
 
     if (entityname === "*") {
       this.rest.getBalanceByPlan().subscribe((data: {}) => {
         console.log(data);
         this.balancebyplan = data;
+        this.loading = false;
       });
     }
 
@@ -32,11 +35,13 @@ export class BalancebyplanComponent implements OnInit {
       this.rest.searchBbpByNumber(entityname).subscribe((data: {}) => {
         console.log(data);
         this.balancebyplan = data;
+        this.loading = false;
       });
     }
 
     else {
       this.balancebyplan = [];
+      this.loading = false;
     }
 
   }

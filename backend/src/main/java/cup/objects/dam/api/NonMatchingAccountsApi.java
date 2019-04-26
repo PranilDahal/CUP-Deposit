@@ -12,14 +12,14 @@ import cup.objects.NonMatchingAccounts;
 import cup.objects.dam.NonMatchingAccountsExtractor;
 
 @RestController
-@RequestMapping("api/v1/nonmatching")
+@RequestMapping("api/v2/nonmatching")
 public class NonMatchingAccountsApi {
 
 	@Autowired
 	NonMatchingAccountsExtractor DAM;
 	
 	/**
-	 * @return GET - http://localhost:8080/nonmatching/all | Returns ALL NonMatchingAccounts objects
+	 * @return GET - http://localhost:8080/api/v2/nonmatching/all | Returns ALL NonMatchingAccounts objects
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/all", method = RequestMethod.GET)

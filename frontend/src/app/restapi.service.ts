@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'http://localhost:8080/api/v1/';
+const endpoint = 'http://localhost:8080/api/v2/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -64,6 +64,11 @@ export class RestapiService {
       map(this.extractData));
   }
   
+  searchAllAccountBalancesByDistrict(district:string): Observable<any> {
+    return this.http.get(endpoint + 'accountbalances/accountsbydistrict/'+district).pipe(
+      map(this.extractData));
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

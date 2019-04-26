@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BalancebycontactComponent implements OnInit {
 
   balancebycontact: any = [];
+  loading: boolean = false;
   constructor(public rest: RestapiService, private route: ActivatedRoute, private router: Router) { }
 
   currentselection: string='';
@@ -18,12 +19,14 @@ export class BalancebycontactComponent implements OnInit {
   }
 
   getBalanceByContact(entityname: string) {
+    this.loading = true;
     this.balancebycontact = [];
 
     if (entityname === "*") {
       this.rest.getBalanceByContact().subscribe((data: {}) => {
         console.log(data);
         this.balancebycontact = data;
+        this.loading = false;
       });
     }
 
@@ -31,11 +34,13 @@ export class BalancebycontactComponent implements OnInit {
       this.rest.searchBbcByName(entityname).subscribe((data: {}) => {
         console.log(data);
         this.balancebycontact = data;
+        this.loading = false;
       });
     }
 
     else {
       this.balancebycontact = [];
+      this.loading = false;
     }
 
   }
