@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NonmatchingaccountsComponent implements OnInit {
 
   nonmatchingaccounts:any = [] ;
+  loading:boolean = false;
   
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
 
@@ -20,10 +21,12 @@ export class NonmatchingaccountsComponent implements OnInit {
   }
 
   getNonMatchingAccounts() {
+    this.loading = true;
     this.nonmatchingaccounts = [];
     this.rest.getAllNonmatchingAccounts().subscribe((data: {}) => {
       console.log(data);
       this.nonmatchingaccounts = data;
+      this.loading=false;
     });
   }
 

@@ -6,13 +6,15 @@
 	<input #entityname type="text" placeholder="Search.." (keyup.enter)="getBalanceByPlan(entityname.value)">
 </div>
 
-<div style="overflow-x:auto">
-
-	<div style="overflow-x:auto;">
+<div style="height:400px; overflow:auto;">
 
 		<table id="balance_by_plan_table">
 
-			<thead id="balancebyplan_tr">
+			<tr>
+				<td colspan="16" style="text-align:right; padding-right: 15px;">Search * for all plans (long loading time)</td>
+			</tr>
+
+			<tr id="balancebyplan_tr">
 				<th>Name</th>
 				<th>Plan Number</th>
 				<th>Account Number</th>
@@ -29,38 +31,42 @@
 				<th>Deposit</th>
 				<th>Withdrawl</th>
 				<th>Balance</th>
-			</thead>
+			</tr>
+
+			<tr>
+				<td colspan="16" style="text-align:center; padding-right: 15px;" *ngIf="loading">
+					<img src="../../assets/img/loading.gif" alt="loading" width="100" height="100"> </td>
+			</tr>
 
 			<tbody>
 
 				<tr *ngFor="let x of balancebyplan; let i=index;" id="balancebyplan_tr">
-			<td >{{x.transGlobalName}}</td>
-			<td (click)="onPlanSelection(x.planNumber)" style="color:#071D99;cursor: pointer;">
-				<strong>{{x.planNumber}}</strong>
-			</td>
-			<td (click)="onAccountSelection(x.accountNumber)" style="color:#071D99;cursor: pointer;">
-				<strong>{{x.accountNumber}}</strong>
-			</td>
-			<td>{{x.typeName}}</td>
-			<td>{{x.accountName}}</td>
-			<td>{{x.description}}</td>
-			<td>{{x.transactionType}} </td>
-			<td>{{x.transactionDate}} </td>
-			<td>{{x.receiptNumber}} </td>
-			<td>{{x.paymentAmount1}} </td>
-			<td>{{x.receivedBy}} </td>
-			<td>{{x.paymentDate}} </td>
-			<td>{{x.paymentMethod}} </td>
-			<td>{{x.deposit}} </td>
-			<td>{{x.withdrawal}} </td>
-			<td>{{x.balance}} </td>
-			</tr>
+					<td>{{x.transGlobalName}}</td>
+					<td (click)="onPlanSelection(x.planNumber)" style="color:#071D99;cursor: pointer;">
+						<strong>{{x.planNumber}}</strong>
+					</td>
+					<td (click)="onAccountSelection(x.accountNumber)" style="color:#071D99;cursor: pointer;">
+						<strong>{{x.accountNumber}}</strong>
+					</td>
+					<td>{{x.typeName}}</td>
+					<td>{{x.accountName}}</td>
+					<td>{{x.description}}</td>
+					<td>{{x.transactionType}} </td>
+					<td>{{x.transactionDate}} </td>
+					<td>{{x.receiptNumber}} </td>
+					<td>{{x.paymentAmount1}} </td>
+					<td>{{x.receivedBy}} </td>
+					<td>{{x.paymentDate}} </td>
+					<td>{{x.paymentMethod}} </td>
+					<td>{{x.deposit}} </td>
+					<td>{{x.withdrawal}} </td>
+					<td>{{x.balance}} </td>
+				</tr>
 
 			</tbody>
 
 		</table>
 
-	</div>
 </div>
 <div>
 	<app-planhistory *ngIf="planselection" [selectedbyuser]="planselection"></app-planhistory>

@@ -32,10 +32,9 @@ public class AllAccountBalancesExtractor {
     		"left outer join GLOBALENTITY GE on GLOBALENTITYACCOUNTENTITY.GLOBALENTITYID = GE.GLOBALENTITYID \r\n" + 
     		"inner join PLPLAN P on P.PLANNUMBER = GLOBALENTITYACCOUNT.NAME \r\n" + 
     		"left outer join [EnerGov_Prod].[dbo].CUSTOMSAVERPLANMANAGEMENT CSM on P.PLPLANID = CSM.ID \r\n" + 
-    		"left outer join [EnerGov_Prod].[dbo].[DISTRICT] D on P.DISTRICTID = D.DISTRICTID\r\n" + 
-    		"WHERE GLOBALENTITYACCOUNTTYPE.DESCRIPTION like 'DRP%'\r\n" + 
-    		"order by P.PLANNUMBER, GLOBALENTITYACCOUNT.NAME";
-
+    		"left outer join [EnerGov_Prod].[dbo].[DISTRICT] D on P.DISTRICTID = D.DISTRICTID \r\n" + 
+    		"WHERE GLOBALENTITYACCOUNTTYPE.DESCRIPTION like 'DRP%'";
+    		
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -78,7 +77,15 @@ public class AllAccountBalancesExtractor {
 
     public List<AllAccountBalances> getAllAccountBalances() {
 
-        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNT_BALANCES, new Mapper());
+        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNT_BALANCES + " order by P.PLANNUMBER, GLOBALENTITYACCOUNT.NAME", new Mapper());
+        return accts;
+
+    }
+    
+    public List<AllAccountBalances> getAllAccountBalancesByDistrict(String district) {
+
+        List <AllAccountBalances> accts = this.jdbcTemplate.query(GET_ALLACCOUNT_BALANCES +" and D.NAME like '%"+district+"%' "
+        		+"order by P.PLANNUMBER, GLOBALENTITYACCOUNT.NAME" , new Mapper());
         return accts;
 
     }

@@ -3,26 +3,22 @@
 <h2 id="flagged_accounts_title"><b>Flagged Accounts</b></h2>
 
 
-  <div class="row">
+  <div>
      <div class="col" id="flagged_accounts_export_div"> 
+
       <div class="btn-group mr-2" role="group">
        <input type="button" id="btnExport" class="btn btn-outline-info" 
         onclick="export_table_to_excel('nonmatchingaccounts_table', 'xlsx', 'Non Matching')" value="Excel"/> 
-
-    </div>
+      </div>
 
     
     <div class="btn-group mr-2" role="group">
-
       <input type="button" id="btnPDF" class="btn btn-outline-info" 
        onclick="export_pdf('nonmatchingaccounts_table','Non Matching')" value="PDF"/> 
+    </div>
 
-   </div>
-
-  
-  </div>
-  <br>
-  
+  </div>  
+</div>
   <!-- <div id="editor"></div> -->
 
 <div  id="nonmatchingaccounts_table">
@@ -62,7 +58,11 @@
       </tr> -->
       <tr></tr>
       
-
+      <tr>
+          <td colspan="10" style="text-align:center; padding-right: 15px;" *ngIf="loading">
+            <img src="../../assets/img/loading.gif" alt="loading" width="100" height="100"> </td>
+      </tr>
+      
     <tr *ngFor="let x of nonmatchingaccounts; let i=index;" id="nonmatchingaccounts_tr">
       <td>{{x.name}}</td>
       <td>{{x.companyname}}</td>

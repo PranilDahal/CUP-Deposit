@@ -15,7 +15,7 @@ import cup.objects.dam.BalanceByContactExtractor;
 import cup.objects.dam.BalanceByPlanExtractor;
 
 @RestController
-@RequestMapping("api/v1/balances")
+@RequestMapping("api/v2/balances")
 public class BalanceByTypeAPI {
 	
 	@Autowired
@@ -24,7 +24,7 @@ public class BalanceByTypeAPI {
 	@Autowired
 	BalanceByPlanExtractor planDAM;
 	/**
-	 * @return GET - http://localhost:8080/api/v1/balances/contact | Returns individual balances by contact objects
+	 * @return GET - http://localhost:8080/api/v21/balances/contact | Returns individual balances by contact objects
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
@@ -33,7 +33,7 @@ public class BalanceByTypeAPI {
 	}
 
 	/**
-	 * @return GET - http://localhost:8080/api/v1/balances/plan | Returns individual balances by plan objects
+	 * @return GET - http://localhost:8080/api/v2/balances/plan | Returns individual balances by plan objects
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
@@ -42,7 +42,7 @@ public class BalanceByTypeAPI {
 	}
 	
 	/**
-	 * @return GET - http://localhost:8080/api/v1/balances/search/bbc/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
+	 * @return GET - http://localhost:8080/api/v2/balances/search/bbc/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/search/bbc/{name}", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class BalanceByTypeAPI {
 	}
 	
 	/**
-	 * @return GET - http://localhost:8080/api/v1/balances/search/bbp/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
+	 * @return GET - http://localhost:8080/api/v2/balances/search/bbp/{name} | Returns all GLOBAL ENTITIE's accounts based on the Name of the ENTITY
 	 */
 	@CrossOrigin
 	@RequestMapping(value = "/search/bbp/{name}", method = RequestMethod.GET)
