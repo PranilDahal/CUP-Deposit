@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from '../service/http.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class NonmatchingaccountsComponent implements OnInit {
 
   nonmatchingaccounts:any = [] ;
   loading:boolean = false;
-  
+
   constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
 
   // Function that gets called when the componenet is initialized
@@ -28,6 +29,18 @@ export class NonmatchingaccountsComponent implements OnInit {
       this.nonmatchingaccounts = data;
       this.loading=false;
     });
+  }
+
+  onClick(account, email){
+    const recipient = {
+      account: account,
+      email: email
+    }
+    this.http.sendEmail("http://localhost:3000/sendEmail", recipient).subscribe(
+      data => {
+        let res:any = data;
+      }
+    )
   }
 
 }
