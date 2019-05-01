@@ -14,7 +14,7 @@ export class NonmatchingaccountsComponent implements OnInit {
   nonmatchingaccounts:any = [] ;
   loading:boolean = false;
 
-  constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public rest:RestapiService, private route: ActivatedRoute, private router: Router, public http: HttpService) { }
 
   // Function that gets called when the componenet is initialized
   ngOnInit() {
@@ -36,7 +36,7 @@ export class NonmatchingaccountsComponent implements OnInit {
       account: account,
       email: email
     }
-    this.http.sendEmail("http://localhost:3000/sendEmail", recipient).subscribe(
+    this.http.sendEmail("http://localhost:8080/sendEmail", recipient).subscribe(
       data => {
         let res:any = data;
       }
