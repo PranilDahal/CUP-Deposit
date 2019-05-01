@@ -36,7 +36,7 @@ export class NonmatchingaccountsComponent implements OnInit {
       account: account,
       email: email
     }
-    this.http.sendEmail("http://localhost:8080/sendEmail", recipient).subscribe(
+    this.http.sendEmail("http://localhost:3000/sendEmail", recipient).subscribe(
       data => {
         let res:any = data;
       }
