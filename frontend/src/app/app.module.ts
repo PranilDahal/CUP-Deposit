@@ -15,6 +15,7 @@ import { BalancebycontactComponent } from './balancebycontact/balancebycontact.c
 import { AllaccountbalancesComponent } from './allaccountbalances/allaccountbalances.component';
 import { TranshistoryComponent } from './transhistory/transhistory.component';
 import { PlanhistoryComponent } from './planhistory/planhistory.component';
+import { HttpService } from './service/http.service';
 
 const appRoutes: Routes = [
 
@@ -73,7 +74,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
